@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AarKaiser.com</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#000;
+ background:radial-gradient(ellipse 30% 14% at 18% 22%,#bfe9ee 0,transparent 70%),
+ radial-gradient(ellipse 34% 12% at 78% 68%,#a9dde6 0,transparent 70%),
+ radial-gradient(ellipse 26% 10% at 30% 78%,#9fd8e2 0,transparent 70%),
+ linear-gradient(#2aa6bd,#47b9c9);user-select:none;-webkit-user-select:none}
+.win{width:100%;max-width:620px;background:#c0c0c0;
+ border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.25);padding:3px}
+.tb{background:#000080;color:#fff;font-weight:bold;padding:3px 4px;display:flex;justify-content:space-between;align-items:center}
+.btn{background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;font:inherit;font-weight:bold;padding:0 6px;cursor:pointer;color:#000}
+.btn:active{border-color:#404040 #fff #fff #404040}
+.x{width:20px;height:18px;line-height:12px;padding:0}
+.body{padding:22px 16px}
+.box{border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b8;padding:18px;font-size:clamp(16px,3.6vw,22px);font-weight:bold;line-height:1.35;text-align:left}
+.icons{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-around;padding:8px 4px;z-index:2}
+.stage{position:absolute;left:0;right:0;top:96px;bottom:46px;display:flex;align-items:center;justify-content:center;padding:6px 10px;overflow:auto}
+.icon{width:84px;text-align:center;cursor:pointer;color:#fff;font-weight:bold;font-size:11px;line-height:1.15;text-shadow:1px 1px 0 #000;-webkit-tap-highlight-color:transparent;position:relative;touch-action:manipulation}
+.icon .g{display:block;width:44px;height:44px;margin:0 auto 3px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.35))}
+#i4 .g{width:56px}
+.icon:active .g{transform:translate(1px,1px)}
+@media(min-width:900px) and (min-height:500px){.icon{width:110px;font-size:13px}.icon .g{width:64px;height:64px}#i4 .g{width:80px}}
+@media(min-width:640px){.icons{position:static;display:contents}.icon{position:absolute;z-index:2}#i1{left:2%;top:36%}#i2{right:2%;top:10%}#i3{right:2%;top:36%}#i4{right:2%;top:62%}.stage{top:0;padding:0 130px 46px 130px}}
+@media(max-height:480px) and (min-width:640px){.icon .g{width:34px;height:34px}#i4 .g{width:44px}.box{font-size:15px!important;padding:10px!important}.body{padding:10px!important}#i2{top:4%}#i3{top:30%}#i4{top:56%}#i1{top:32%}}
+@media(max-height:480px) and (max-width:639px){.stage{top:70px}}
+.new{color:#ff0;font-size:11px;position:absolute;top:-10px;left:50%;transform:translateX(-50%) ;animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+.visits{position:absolute;right:8px;bottom:50px;z-index:3;background:#000;color:#fff;padding:4px 8px;font-family:"Courier New",monospace;font-size:14px;z-index:2}
+.visits b{color:#4ff;letter-spacing:1px}
+.task{position:absolute;left:0;right:0;bottom:0;height:42px;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;justify-content:space-between;padding:3px;z-index:30}
+.flag{width:16px;height:16px;display:inline-block;background:linear-gradient(90deg,#f33 50%,#3b3 50%) top/100% 50% no-repeat,linear-gradient(90deg,#39f 50%,#fc0 50%) bottom/100% 50% no-repeat}.start{font-size:16px;height:30px;display:flex;align-items:center;gap:6px}
+.clock{border:2px solid;border-color:#808080 #fff #fff #808080;padding:1px 10px;font-size:13px;line-height:1.15;text-align:right}.clock small{font-size:11px}
+.dlg{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);width:min(88vw,380px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:50;display:none}
+.dlg .b{display:flex;gap:14px;padding:18px 14px;align-items:center}
+.dlg .ic{flex:none;width:34px;height:34px;border-radius:50%;color:#fff;font:bold 22px/34px Arial;text-align:center}.ic.e{background:#d01010}.ic.i{background:#1030c0}.ic.q{background:#e0a800}
+.dlg .ok{display:block;margin:0 auto 14px;width:90px;height:28px}
+#menu{position:absolute;left:3px;bottom:44px;width:210px;background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:2px 2px 0 #000;display:none;z-index:40}
+#menu div{padding:10px 14px;cursor:pointer}#menu div:hover{background:#000080;color:#fff}
+#off{position:fixed;inset:0;background:#000;color:#ff8c00;z-index:100;display:none;align-items:center;justify-content:center;text-align:center;font-family:"Courier New",monospace;font-size:clamp(18px,4vw,28px);padding:20px;cursor:pointer}
+#dog{position:fixed;bottom:60px;left:-120px;z-index:60;display:none}
+#dog span{position:absolute;top:-30px;left:20px;background:#fff;border:2px solid #000;padding:2px 8px;font:bold 16px Arial;white-space:nowrap}
+@keyframes run{to{left:110vw}}@keyframes bob{50%{transform:translateY(-8px)}}#dog svg{animation:bob .25s infinite}
+@keyframes shake{25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+.shake .g{animation:shake .25s 4}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin .g{animation:spin .8s 2}
+@keyframes hop{50%{transform:translateY(-22px)}}
+.hop .g{animation:hop .3s 3}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="s-worker" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="18" y="14" width="12" height="10" fill="#f2b97a"/><rect x="16" y="8" width="16" height="8" fill="#ffd400"/><rect x="14" y="14" width="20" height="3" fill="#e0b000"/><rect x="16" y="24" width="16" height="14" fill="#ffd400"/><rect x="16" y="38" width="6" height="8" fill="#c8a000"/><rect x="26" y="38" width="6" height="8" fill="#c8a000"/><rect x="32" y="26" width="3" height="20" fill="#7a4a1e"/><rect x="30" y="42" width="10" height="4" fill="#888"/><rect x="38" y="44" width="8" height="3" fill="#777"/></symbol>
+<symbol id="s-globe" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#2a64d8" stroke="#103a8c" stroke-width="2"/><path d="M12 14c6-4 12-2 14 3s-4 6-3 10-6 6-9 2-6-10-2-15z" fill="#3fae3f"/><path d="M30 28c4-2 8 0 8 5s-4 7-7 5-3-8-1-10z" fill="#3fae3f"/><path d="M28 8c4 0 8 2 9 5-4 1-8-1-9-5z" fill="#3fae3f"/><ellipse cx="17" cy="14" rx="6" ry="3" fill="#fff" opacity=".3"/></symbol>
+<symbol id="s-mail" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="22" y="26" width="5" height="20" fill="#7a4a1e"/><rect x="6" y="12" width="32" height="16" fill="#d8d8d8" stroke="#555" stroke-width="2"/><rect x="6" y="12" width="12" height="16" fill="#aaa"/><rect x="30" y="4" width="3" height="14" fill="#555"/><rect x="33" y="4" width="10" height="7" fill="#e02020"/></symbol>
+<symbol id="s-dog" viewBox="0 0 64 48" shape-rendering="crispEdges"><rect x="14" y="14" width="30" height="14" fill="#b87333"/><rect x="40" y="8" width="14" height="12" fill="#b87333"/><rect x="52" y="12" width="8" height="6" fill="#d9a066"/><rect x="40" y="4" width="5" height="8" fill="#7a4a1e"/><rect x="56" y="12" width="3" height="3" fill="#000"/><rect x="48" y="11" width="3" height="3" fill="#000"/><rect x="14" y="28" width="5" height="12" fill="#a0602a"/><rect x="24" y="28" width="5" height="10" fill="#a0602a"/><rect x="34" y="28" width="5" height="12" fill="#a0602a"/><rect x="42" y="28" width="5" height="10" fill="#a0602a"/><rect x="6" y="8" width="8" height="5" fill="#b87333"/><rect x="2" y="4" width="6" height="5" fill="#b87333"/><rect x="22" y="14" width="12" height="14" fill="#fff" opacity=".35"/></symbol>
+</defs></svg>
+<div class="icons">
+<div class="icon" id="i1" data-act="worker" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-worker"/></svg>UNDER<br>CONSTRUCTION</div>
+<div class="icon" id="i2" data-act="globe" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-globe"/></svg>INTERNET</div>
+<div class="icon" id="i3" data-act="mail" role="button" tabindex="0"><span class="new">NEW!</span><svg class="g" viewBox="0 0 48 48"><use href="#s-mail"/></svg>MAIL</div>
+<div class="icon" id="i4" data-act="dog" role="button" tabindex="0"><svg class="g" viewBox="0 0 64 48"><use href="#s-dog"/></svg>DOG</div>
+</div>
+<div class="stage">
+
+<div class="win">
+ <div class="tb"><span>AarKaiser.com</span><button class="btn x" aria-label="close" data-act="close">x</button></div>
+ <div class="body"><div class="box">This domain is exclusively used for sending and receiving emails. If you were looking for a groundbreaking tech portfolio, you’ve arrived about 5 years too early. Move along!</div></div>
+</div>
+
+</div>
+<div class="visits">Visits: <b id="v">000069</b></div>
+<div id="menu"><div data-act="shutdown">Shut Down...</div><div data-act="bsod">Do Not Click This</div></div>
+<div class="task"><button class="btn start" id="start" data-act="start"><i class="flag"></i>Start</button><div class="clock" id="clock"></div></div>
+
+<div class="dlg" id="dlg"><div class="tb"><span id="dt">Error</span><button class="btn x" data-act="dlgclose">x</button></div>
+ <div class="b"><span class="ic" id="di"></span><span id="dm"></span></div><button class="btn ok" data-act="dlgclose">OK</button></div>
+<div id="dog"><svg viewBox="0 0 64 48" width="90" height="68"><use href="#s-dog"/></svg><span>WOOF!</span></div>
+<div id="off"></div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function tick(){var d=new Date();$("clock").innerHTML=d.toLocaleTimeString([],{hour:"numeric",minute:"2-digit",second:"2-digit"})+"<br><small>"+d.toLocaleDateString([],{weekday:"short",year:"numeric",month:"short",day:"numeric"})+"</small>"}
+tick();setInterval(tick,1000);
+var vis=69+Math.floor(Math.random()*5);$("v").textContent=("000000"+vis).slice(-6);
+function dlg(t,i,m){$("dt").textContent=t;var d=$("di");d.className="ic "+i;d.textContent={e:"X",i:"i",q:"!"}[i];$("dm").textContent=m;$("dlg").style.display="block"}
+function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
+function dog(){var d=$("dog");d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation="run 3s linear forwards";setTimeout(function(){d.style.display="none"},3100)}
+function off(h){var o=$("off");o.innerHTML=h;o.style.display="flex"}
+var acts={
+ worker:function(e){anim(e,"hop");dlg("Under Construction","e","UNDERCONSTRUCTION.EXE has performed an illegal operation and will be shut down.")},
+ globe:function(e){anim(e,"spin");dlg("Internet","q","Cannot connect to the Internet. Please wait for the modem to finish screaming.")},
+ mail:function(e){anim(e,"shake");dlg("You've got mail!","i","0 new messages.")},
+ dog:function(e){dog()},
+ start:function(){var m=$("menu");m.style.display=m.style.display==="block"?"none":"block"},
+ shutdown:function(){$("menu").style.display="none";off("<div>It's now safe to turn off<br>your computer.<br><br><small>(tap to turn it back on)</small></div>")},
+ bsod:function(){$("menu").style.display="none";var o=$("off");o.style.background="#0000aa";o.style.color="#fff";off("<div>A problem has been detected.<br>Just kidding. Tap to go back.</div>")},
+ close:function(){dlg("AarKaiser.com","e","You can't close this. It lives here now.")},
+ dlgclose:function(){$("dlg").style.display="none"}
+};
+document.addEventListener("click",function(ev){
+ var t=ev.target.closest("[data-act]");
+ if(!t){$("menu").style.display="none";return}
+ var f=acts[t.getAttribute("data-act")];if(f)f(t);
+});
+document.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("icon")){e.preventDefault();e.target.click()}});
+$("off").addEventListener("click",function(){var o=$("off");o.style.display="none";o.style.background="#000";o.style.color="#ff8c00"});
+})();
+</script>
+</body>
+</html>
