@@ -71,7 +71,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 
 <div class="win">
  <div class="tb"><span>AarKaiser.com</span><button class="btn x" aria-label="close" data-act="close">x</button></div>
- <div class="body"><div class="box">This domain is exclusively used for sending and receiving emails. If you were looking for a groundbreaking tech portfolio, you’ve arrived about 5 years too early. Move along!</div></div>
+ <div class="body"><div class="box">This domain is exclusively used for sending and receiving emails. If you were looking for a groundbreaking tech portfolio, you’ve arrived about <span id="yrs">31</span> years too late. Move along!</div></div>
 </div>
 
 </div>
@@ -89,6 +89,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 var $=function(i){return document.getElementById(i)};
 function tick(){var d=new Date();$("clock").innerHTML=d.toLocaleTimeString([],{hour:"numeric",minute:"2-digit",second:"2-digit"})+"<br><small>"+d.toLocaleDateString([],{weekday:"short",year:"numeric",month:"short",day:"numeric"})+"</small>"}
 tick();setInterval(tick,1000);
+$("yrs").textContent=new Date().getFullYear()-1995;
 var vis=69+Math.floor(Math.random()*5);$("v").textContent=("000000"+vis).slice(-6);
 function dlg(t,i,m){$("dt").textContent=t;var d=$("di");d.className="ic "+i;d.textContent={e:"X",i:"i",q:"!"}[i];$("dm").textContent=m;$("dlg").style.display="block"}
 function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
