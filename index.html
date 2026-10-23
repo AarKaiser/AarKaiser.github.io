@@ -96,16 +96,16 @@ function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(
 function dog(){var d=$("dog");d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation="run 3s linear forwards";setTimeout(function(){d.style.display="none"},3100)}
 var yt=null,ytReady=false,ytWant=false;
 var ytS=false;function ytInit(){if(ytS)return;ytS=true;var d=document.createElement("div");d.id="ytbox";d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999";d.innerHTML='<div id="ytp"></div>';document.body.appendChild(d);
- var mk=function(){yt=new YT.Player("ytp",{width:200,height:113,videoId:"z1JImdh0Z78",playerVars:{playsinline:1,controls:1},events:{onReady:function(){ytReady=true;if(ytWant)ytPlay()},onStateChange:function(e){if(e.data===1){ytOk=true;ytHide();ytStart=true;clearTimeout(ytT1);clearTimeout(ytT2);ytT2=setTimeout(offNow,15000)}else if(e.data===0&&ytStart&&offPend)offNow()}}})};
+ var mk=function(){yt=new YT.Player("ytp",{width:200,height:113,videoId:"z1JImdh0Z78",playerVars:{playsinline:1,controls:1},events:{onReady:function(){ytReady=true;if(ytWant)ytPlay()},onStateChange:function(e){(window.__yl=window.__yl||[]).push([e.data,Math.round(performance.now())]);if(e.data===1){ytOk=true;ytHide();ytStart=true}else if(e.data===0&&ytStart&&offPend)offNow()}}})};
  if(window.YT&&YT.Player)mk();else{window.onYouTubeIframeAPIReady=mk;var t=document.createElement("script");t.src="https://www.youtube.com/iframe_api";document.head.appendChild(t)}}
 var ytOk=false;
-function ytHide(){var d=document.getElementById("ytbox");if(d)d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999"}
+function ytHide(){var k=document.getElementById("ytskip");if(k)k.style.display="none";var d=document.getElementById("ytbox");if(d)d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999"}
 function ytPlay(){ytOk=false;try{yt.seekTo(0);yt.playVideo()}catch(e){}
- setTimeout(function(){if(!ytOk){var d=document.getElementById("ytbox");if(d)d.style.cssText="position:fixed;left:50%;bottom:60px;margin-left:-100px;width:200px;height:113px;z-index:99999"}},1500)}
+ setTimeout(function(){if(!ytOk){var d=document.getElementById("ytbox");if(d)d.style.cssText="position:fixed;left:50%;bottom:60px;margin-left:-100px;width:200px;height:113px;z-index:99999";var k=document.getElementById("ytskip");if(!k){k=document.createElement("button");k.id="ytskip";k.className="btn";k.setAttribute("data-act","skipoff");k.textContent="Skip sound";document.body.appendChild(k)}k.style.cssText="position:fixed;left:50%;bottom:20px;margin-left:-50px;width:100px;z-index:99999;display:block"}},1500)}
 function shutSound(){ytWant=true;if(!yt)ytInit();else if(ytReady)ytPlay()}
 var ytStart=false,offPend=false,ytT1=0,ytT2=0;
 function offNow(){clearTimeout(ytT1);clearTimeout(ytT2);if(!offPend)return;offPend=false;ytHide();off("<div>It's now safe to turn off<br>your computer.<br><br><small>(tap to turn it back on)</small></div>")}
-function offWait(){offPend=true;ytStart=false;clearTimeout(ytT1);clearTimeout(ytT2);ytT1=setTimeout(offNow,5000)}
+function offWait(){offPend=true;ytStart=false}
 function off(h){var o=$("off");o.innerHTML=h;o.style.display="flex"}
 var acts={
  worker:function(e){anim(e,"hop");dlg("Under Construction","e","UNDERCONSTRUCTION.EXE has performed an illegal operation and will be shut down.")},
@@ -116,6 +116,7 @@ var acts={
  shutdown:function(){$("menu").style.display="none";shutSound();offWait()},
  bsod:function(){$("menu").style.display="none";var o=$("off");o.style.background="#0000aa";o.style.color="#fff";off("<div>A problem has been detected.<br>Just kidding. Tap to go back.</div>")},
  close:function(){dlg("AarKaiser.com","e","You can't close this. It lives here now.")},
+ skipoff:function(){offNow()},
  dlgclose:function(){$("dlg").style.display="none"}
 };
 document.addEventListener("click",function(ev){
@@ -124,7 +125,7 @@ document.addEventListener("click",function(ev){
  var f=acts[t.getAttribute("data-act")];if(f)f(t);
 });
 document.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("icon")){e.preventDefault();e.target.click()}});
-$("off").addEventListener("click",function(){offPend=false;clearTimeout(ytT1);clearTimeout(ytT2);ytWant=false;try{yt&&yt.pauseVideo()}catch(e){}ytHide();var o=$("off");o.style.display="none";o.style.background="#000";o.style.color="#ff8c00"});
+$("off").addEventListener("click",function(){offPend=false;ytWant=false;try{yt&&yt.pauseVideo()}catch(e){}ytHide();var o=$("off");o.style.display="none";o.style.background="#000";o.style.color="#ff8c00"});
 })();
 </script>
 </body>
