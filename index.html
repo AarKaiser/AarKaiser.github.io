@@ -36,7 +36,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 .visits b{color:#4ff;letter-spacing:1px}
 .task{position:absolute;left:0;right:0;bottom:0;height:42px;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;justify-content:space-between;padding:3px;z-index:30}
 .flag{width:16px;height:16px;display:inline-block;background:linear-gradient(90deg,#f33 50%,#3b3 50%) top/100% 50% no-repeat,linear-gradient(90deg,#39f 50%,#fc0 50%) bottom/100% 50% no-repeat}.start{font-size:16px;height:30px;display:flex;align-items:center;gap:6px}
-.clock{border:2px solid;border-color:#808080 #fff #fff #808080;padding:1px 10px;font-size:13px;line-height:1.15;text-align:right}.clock small{font-size:11px}
+.tray{display:flex;align-items:center;gap:8px}.msn{display:block;flex:none;background:#c0c0c0;padding:0 2px}.clock{border:2px solid;border-color:#808080 #fff #fff #808080;padding:1px 10px;font-size:13px;line-height:1.15;text-align:right}.clock small{font-size:11px}
 .dlg{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);width:min(88vw,380px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:50;display:none}
 .dlg .b{display:flex;gap:14px;padding:18px 14px;align-items:center}
 .dlg .ic{flex:none;width:34px;height:34px;border-radius:50%;color:#fff;font:bold 22px/34px Arial;text-align:center}.ic.e{background:#d01010}.ic.i{background:#1030c0}.ic.q{background:#e0a800}.dlg .ic.w,.dlg .ic.s{width:64px;height:64px;border-radius:0;background:none;font-size:0;line-height:0}
@@ -121,7 +121,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 </div>
 <div class="visits">Visits: <b id="v">000069</b></div>
 <div id="menu"><div data-act="shutdown">Shut Down...</div><div data-act="bsod">Do Not Click This</div></div>
-<div class="task"><button class="btn start" id="start" data-act="start"><i class="flag"></i>Start</button><div class="clock" id="clock"></div></div>
+<div class="task"><button class="btn start" id="start" data-act="start"><i class="flag"></i>Start</button><div class="tray"><svg class="msn" viewBox="0 0 24 24" width="22" height="22" aria-label="MSN Messenger" role="img"><circle cx="9" cy="6.5" r="4" fill="#e8f6ff" stroke="#6fa0c8" stroke-width="1"/><path d="M2.5 21c0-6 2.5-9 6.5-9s6.5 3 6.5 9z" fill="#dff1fb" stroke="#6fa0c8" stroke-width="1"/><path d="M3.5 21c.2-5 2-8 5.5-8" fill="none" stroke="#9fc9e4" stroke-width="1"/><rect x="12" y="11.5" width="10" height="9.5" rx="1.5" fill="#7ed02a" stroke="#2f7a0a" stroke-width="1.4"/><rect x="14" y="14.5" width="6" height="3" rx=".8" fill="#4f9b12"/></svg><div class="clock" id="clock"></div></div></div>
 
 <div class="dlg" id="dlg"><div class="tb"><span id="dt">Error</span><button class="btn x" data-act="dlgclose">x</button></div>
  <div class="b"><span class="ic" id="di"></span><span id="dm"></span></div><button class="btn ok" data-act="dlgclose">OK</button></div>
