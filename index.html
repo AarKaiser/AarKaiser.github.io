@@ -191,7 +191,7 @@ function missile(fromAct,toAct){var a=document.querySelector("[data-act="+fromAc
  var an=m.animate([{transform:"translate("+(x0-22)+"px,"+(y0-8)+"px) rotate("+ang+"deg)"},{transform:"translate("+(x1-22)+"px,"+(y1-8)+"px) rotate("+ang+"deg)"}],{duration:900,easing:"ease-in",fill:"forwards"});
  an.onfinish=function(){m.style.display="none";var bg=$("bang");bg.style.left=x1+"px";bg.style.top=y1+"px";bg.style.display="block";bg.animate([{transform:"scale(.3)",opacity:1},{transform:"scale(1.5)",opacity:0}],{duration:700,easing:"ease-out"}).onfinish=function(){bg.style.display="none"};anim(document.querySelector("[data-act="+toAct+"]"),"shake")}}
 var acts={
- worker:function(e){anim(e,"hop");dlg("Under Construction","w","UNDERCONSTRUCTION.EXE: We'll stand around making direct eye contact with you while you rubberneck in traffic.")},
+ worker:function(e){anim(e,"hop");dlg("Under Construction","w","UNDERCONSTRUCTION.EXE: We'll stand around making direct eye contact while you rubberneck in traffic.")},
  globe:function(e){anim(e,"spin");dlg("Internet","q","Cannot connect to the Internet. Please wait for the modem to finish screaming.")},
  mail:function(e){anim(e,"shake");dlg("You've got mail!","i","0 new messages. Loser.")},
  dog:function(e){dog()},
