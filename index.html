@@ -82,7 +82,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 #ns svg,#ie svg{animation:bob .25s infinite}
 @keyframes jigi{50%{transform:translate(6px,-6px) rotate(8deg)}}#fight.bf.go .fc{animation-name:jigi}#fight.bf .fc{transform:none}
 #pl{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);width:min(92vw,360px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:53;display:none}
-#pl .scr{background:#0a1a0a;color:#3f3;font:14px "Courier New",monospace;padding:8px;margin:3px 0;text-align:left}#pl .bar{height:10px;background:#143;margin-top:6px}#plvid{margin-top:8px;height:216px;background:#000;border:2px solid;border-color:#404040 #fff #fff #404040;box-sizing:border-box}#plvid iframe{display:block;width:100%;height:180px;border:0}#pl .bar i{display:block;height:100%;width:0;background:#3f3}
+#pl .scr{background:#0a1a0a;color:#3f3;font:14px "Courier New",monospace;padding:8px;margin:3px 0;text-align:left}#pl .bar{height:10px;background:#143;margin-top:6px}#plvid{margin-top:8px;height:236px;background:#000;border:2px solid;border-color:#404040 #fff #fff #404040;box-sizing:border-box}#plvid iframe{display:block;width:100%;height:200px;border:0}#pl .bar i{display:block;height:100%;width:0;background:#3f3}
 @media(max-width:639px){.icons2{bottom:82px}.stage{bottom:190px!important}}
 #i9 .g{width:64px!important;height:44px!important}#i5 .g{height:44px}
 #msl{position:fixed;left:0;top:0;width:44px;height:16px;z-index:90;pointer-events:none;display:none}#bang{position:fixed;left:0;top:0;width:90px;height:90px;margin:-45px 0 0 -45px;z-index:91;pointer-events:none;display:none}
@@ -177,9 +177,9 @@ function off(h){var o=$("off");o.innerHTML=h;o.style.display="flex"}
 var yt2=null,pl2=false,plT=0,plShown=false,plWant=false,plInit0=false;
 function plFmt(s){s=Math.floor(s||0);return Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
 function plTick(){try{var c=yt2.getCurrentTime(),d=yt2.getDuration()||212;$("plbar").style.width=Math.min(100,c/d*100)+"%";$("pltm").textContent=plFmt(c)+" / "+plFmt(d)}catch(e){}}
-var PLHID="position:fixed;left:-9999px;top:0;width:260px;height:180px;z-index:99999";
-function plPlace(){var d=document.getElementById("ytbox2");if(!d)return;if($("pl").style.display!=="block"){d.style.cssText=PLHID;return}var r=$("plvid").getBoundingClientRect();d.style.cssText="position:fixed;left:"+(r.left+16)+"px;top:"+(r.top+18)+"px;width:"+(r.width-32)+"px;height:180px;z-index:99999"}
-function plMk(){yt2=new YT.Player("ytp2",{width:"100%",height:180,videoId:"dQw4w9WgXcQ",playerVars:{playsinline:1,controls:1},events:{onReady:function(){pl2=true;if(plWant){try{yt2.seekTo(0);yt2.playVideo()}catch(e){}}},onStateChange:function(e){if(e.data===1){plShown=true;clearInterval(plT);plT=setInterval(plTick,500)}}}})}
+var PLHID="position:fixed;left:-9999px;top:0;width:260px;height:200px;z-index:99999";
+function plPlace(){var d=document.getElementById("ytbox2");if(!d)return;if($("pl").style.display!=="block"){d.style.cssText=PLHID;return}var r=$("plvid").getBoundingClientRect();d.style.cssText="position:fixed;left:"+(r.left+16)+"px;top:"+(r.top+18)+"px;width:"+(r.width-32)+"px;height:200px;z-index:99999"}
+function plMk(){yt2=new YT.Player("ytp2",{width:"100%",height:200,videoId:"dQw4w9WgXcQ",playerVars:{playsinline:1,controls:1},events:{onReady:function(){pl2=true;if(plWant){try{yt2.seekTo(0);yt2.playVideo()}catch(e){}}},onStateChange:function(e){if(e.data===1){plShown=true;clearInterval(plT);plT=setInterval(plTick,500)}}}})}
 function plInit(){if(plInit0)return;plInit0=true;var d=document.createElement("div");d.id="ytbox2";d.style.cssText=PLHID;d.innerHTML='<div id="ytp2"></div>';document.body.appendChild(d);
  if(window.YT&&YT.Player)plMk();else{var pv=window.onYouTubeIframeAPIReady;window.onYouTubeIframeAPIReady=function(){if(pv)pv();plMk()};if(!document.querySelector('script[src*="iframe_api"]')){var t=document.createElement("script");t.src="https://www.youtube.com/iframe_api";document.head.appendChild(t)}}}
 function plOpen(){plInit();plWant=true;plShown=false;$("pl").style.display="block";plPlace();if(pl2){try{yt2.seekTo(0);yt2.playVideo()}catch(e){}}}
