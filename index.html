@@ -170,15 +170,18 @@ var ytStart=false,offPend=false,ytT1=0,ytT2=0;
 function offNow(){clearTimeout(ytT1);clearTimeout(ytT2);if(!offPend)return;offPend=false;ytHide();off("<div>It's now safe to turn off<br>your computer.<br><br><small>(tap to turn it back on)</small><br><br><small>Jump scare intentional.</small></div>")}
 function offWait(){offPend=true;ytStart=false}
 function off(h){var o=$("off");o.innerHTML=h;o.style.display="flex"}
-var yt2=null,pl2=false,plT=0,plShown=false;
+var yt2=null,pl2=false,plT=0,plShown=false,plWant=false,plInit0=false;
 function plFmt(s){s=Math.floor(s||0);return Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
 function plTick(){try{var c=yt2.getCurrentTime(),d=yt2.getDuration()||212;$("plbar").style.width=Math.min(100,c/d*100)+"%";$("pltm").textContent=plFmt(c)+" / "+plFmt(d)}catch(e){}}
-function plMk(){yt2=new YT.Player("ytp2",{width:"100%",height:180,videoId:"dQw4w9WgXcQ",playerVars:{playsinline:1,controls:1},events:{onReady:function(){pl2=true;try{yt2.playVideo()}catch(e){}},onStateChange:function(e){if(e.data===1){plShown=true;clearInterval(plT);plT=setInterval(plTick,500)}}}})}
-function plOpen(){$("pl").style.display="block";plShown=false;if(!document.getElementById("ytbox2")){var d=document.createElement("div");d.id="ytbox2";d.innerHTML='<div id="ytp2"></div>';$("plvid").appendChild(d);
+var PLHID="position:fixed;left:-9999px;top:0;width:260px;height:180px;z-index:99999";
+function plPlace(){var d=document.getElementById("ytbox2");if(!d)return;if($("pl").style.display!=="block"){d.style.cssText=PLHID;return}var r=$("plvid").getBoundingClientRect();d.style.cssText="position:fixed;left:"+r.left+"px;top:"+r.top+"px;width:"+r.width+"px;height:180px;z-index:99999"}
+function plMk(){yt2=new YT.Player("ytp2",{width:"100%",height:180,videoId:"dQw4w9WgXcQ",playerVars:{playsinline:1,controls:1},events:{onReady:function(){pl2=true;if(plWant){try{yt2.seekTo(0);yt2.playVideo()}catch(e){}}},onStateChange:function(e){if(e.data===1){plShown=true;clearInterval(plT);plT=setInterval(plTick,500)}}}})}
+function plInit(){if(plInit0)return;plInit0=true;var d=document.createElement("div");d.id="ytbox2";d.style.cssText=PLHID;d.innerHTML='<div id="ytp2"></div>';document.body.appendChild(d);
  if(window.YT&&YT.Player)plMk();else{var pv=window.onYouTubeIframeAPIReady;window.onYouTubeIframeAPIReady=function(){if(pv)pv();plMk()};if(!document.querySelector('script[src*="iframe_api"]')){var t=document.createElement("script");t.src="https://www.youtube.com/iframe_api";document.head.appendChild(t)}}}
- else if(pl2){try{yt2.seekTo(0);yt2.playVideo()}catch(e){}}
-}
-function plStop(){$("pl").style.display="none";clearInterval(plT);try{yt2&&yt2.pauseVideo()}catch(e){}}
+function plOpen(){plInit();plWant=true;plShown=false;$("pl").style.display="block";plPlace();if(pl2){try{yt2.seekTo(0);yt2.playVideo()}catch(e){}}}
+function plStop(){plWant=false;$("pl").style.display="none";clearInterval(plT);try{yt2&&yt2.pauseVideo()}catch(e){}plPlace()}
+document.addEventListener("pointerdown",function(){plInit()},{once:true});
+window.addEventListener("resize",plPlace);
 var acts={
  worker:function(e){anim(e,"hop");dlg("Under Construction","e","UNDERCONSTRUCTION.EXE has performed an illegal operation and will be shut down.")},
  globe:function(e){anim(e,"spin");dlg("Internet","q","Cannot connect to the Internet. Please wait for the modem to finish screaming.")},
