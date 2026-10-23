@@ -142,7 +142,7 @@ function dlg(t,i,m){$("dt").textContent=t;var d=$("di");d.className="ic "+i;d.te
 function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
 var fighting=false,lastFight=0,pDog=-1e9,pCat=-1e9,pNs=-1e9,pIe=-1e9,fTm=[];
 function solo(id,anim){var d=$(id);d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation=anim+" 3s linear forwards";setTimeout(function(){if(!fighting)d.style.display="none"},3100)}
-function alive(id){var d=$(id);if(d.style.display!=="block")return false;var r=d.querySelector("svg").getBoundingClientRect();return id==="dog"?r.right<innerWidth:r.left>0}
+function alive(id){var d=$(id);if(d.style.display!=="block")return false;var r=d.querySelector("svg").getBoundingClientRect();return (id==="dog"||id==="ns")?r.left<innerWidth:r.right>0}
 function dog(){if(fighting||performance.now()-lastFight<1200)return;solo("dog","run")}
 function ns(){if(fighting||performance.now()-lastFight<1200)return;solo("ns","run")}
 function ie(){if(fighting||performance.now()-lastFight<1200)return;solo("ie","runL")}
@@ -156,7 +156,7 @@ function fight(kind){if(fighting)return;fighting=true;var b=kind==="b";["dog","c
  setTimeout(function(){f.className=b?"bf":"";say("...","...")},2300),setTimeout(function(){say("What fight?","Not me.")},3200),
  setTimeout(function(){f.style.display="none";say();fighting=false;lastFight=performance.now();b=false;look()},4800)]}
 document.addEventListener("pointerdown",function(ev){var t=ev.target.closest&&ev.target.closest("[data-act]");if(!t)return;var a=t.getAttribute("data-act"),n=performance.now();
- if((a==="dog"&&alive("cat"))||(a==="cat"&&alive("dog")))fight();else if(a==="ns"){pNs=n;if(n-pIe<1500){pNs=pIe=-1e9;fight("b")}}else if(a==="ie"){pIe=n;if(n-pNs<1500){pNs=pIe=-1e9;fight("b")}}});
+ if((a==="dog"&&alive("cat"))||(a==="cat"&&alive("dog")))fight();else if((a==="ns"&&alive("ie"))||(a==="ie"&&alive("ns")))fight("b")});
 var yt=null,ytReady=false,ytWant=false;
 var ytS=false;function ytInit(){if(ytS)return;ytS=true;var d=document.createElement("div");d.id="ytbox";d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999";d.innerHTML='<div id="ytp"></div>';document.body.appendChild(d);
  var mk=function(){yt=new YT.Player("ytp",{width:200,height:113,videoId:"z1JImdh0Z78",playerVars:{playsinline:1,controls:1},events:{onReady:function(){ytReady=true;if(ytWant)ytPlay()},onStateChange:function(e){(window.__yl=window.__yl||[]).push([e.data,Math.round(performance.now())]);if(e.data===1){ytOk=true;ytHide();ytStart=true}else if(e.data===0&&ytStart&&offPend)offNow()}}})};
