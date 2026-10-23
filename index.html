@@ -144,7 +144,8 @@ var vis=69+Math.floor(Math.random()*5);$("v").textContent=("000000"+vis).slice(-
 function dlg(t,i,m){$("dt").textContent=t;var d=$("di");d.className="ic "+i;if(i==="w"){d.innerHTML='<svg viewBox="0 0 64 64" width="64" height="64" shape-rendering="crispEdges"><rect x="10" y="4" width="16" height="7" fill="#ffd400"/><rect x="8" y="10" width="20" height="3" fill="#e0b000"/><rect x="11" y="13" width="14" height="12" fill="#f2b97a"/><rect x="13" y="17" width="4" height="3" fill="#fff"/><rect x="19" y="17" width="4" height="3" fill="#fff"/><rect x="15" y="18" width="2" height="2" fill="#000"/><rect x="21" y="18" width="2" height="2" fill="#000"/><rect x="13" y="16" width="4" height="2" fill="#c8895a"/><rect x="19" y="16" width="4" height="2" fill="#c8895a"/><rect x="14" y="22" width="8" height="1" fill="#7a3a1a"/><rect x="9" y="25" width="18" height="18" fill="#ff8a00"/><rect x="9" y="30" width="18" height="2" fill="#ffe6a0"/><rect x="27" y="28" width="12" height="4" fill="#f2b97a"/><rect x="9" y="28" width="4" height="12" fill="#f2b97a"/><rect x="10" y="43" width="7" height="14" fill="#2a4a8a"/><rect x="19" y="43" width="7" height="14" fill="#2a4a8a"/><rect x="8" y="57" width="10" height="4" fill="#5a3a1a"/><rect x="18" y="57" width="10" height="4" fill="#5a3a1a"/><rect x="46" y="30" width="3" height="30" fill="#7a4a1e"/><circle cx="47" cy="22" r="11" fill="#d01010" stroke="#700" stroke-width="1.5" shape-rendering="auto"/><path d="M42 17L52 27M52 17L42 27" stroke="#fff" stroke-width="3.5" shape-rendering="auto"/><rect x="37" y="28" width="8" height="4" fill="#f2b97a"/></svg>'}else d.textContent={e:"X",i:"i",q:"!"}[i];$("dm").textContent=m;$("dlg").style.display="block"}
 function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
 var fighting=false,lastFight=0,pDog=-1e9,pCat=-1e9,pNs=-1e9,pIe=-1e9,fTm=[];
-function solo(id,anim){var d=$(id);d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation=anim+" 3s linear forwards";setTimeout(function(){if(!fighting)d.style.display="none"},3100)}
+function ico(id,on){var e=document.querySelector("[data-act="+id+"]");if(e)e.style.visibility=on?"":"hidden"}
+function solo(id,anim){var d=$(id);ico(id,false);d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation=anim+" 3s linear forwards";setTimeout(function(){if(!fighting){d.style.display="none";ico(id,true)}},3100)}
 function alive(id){var d=$(id);if(d.style.display!=="block")return false;var r=d.querySelector("svg").getBoundingClientRect();return (id==="dog"||id==="ns")?r.left<innerWidth:r.right>0}
 function dog(){if(fighting||performance.now()-lastFight<1200)return;solo("dog","run")}
 function ns(){if(fighting||performance.now()-lastFight<1200)return;solo("ns","run")}
@@ -152,12 +153,12 @@ function ie(){if(fighting||performance.now()-lastFight<1200)return;solo("ie","ru
 function cat(){if(fighting||performance.now()-lastFight<1200)return;solo("cat","runL")}
 function ircOpen(){var t=new Date(),h=("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2);$("irclog").innerHTML='<div class="sys">['+h+'] * Now talking in #chat</div><div>['+h+'] &lt;<span class="nick">Total Stranger</span>&gt; asl?</div>';$("ircinp").textContent="No cybering!";$("irc").style.display="block"}
 function say(a,b){$("fb1").textContent=a||"";$("fb1").className="b"+(a?" on":"");$("fb2").textContent=b||"";$("fb2").className="b"+(b?" on":"")}
-function fight(kind){if(fighting)return;fighting=true;var b=kind==="b";["dog","cat","ns","ie"].forEach(function(i){$(i).style.display="none"});var f=$("fight"),sv=f.querySelectorAll("svg"),us=f.querySelectorAll("use");
+function fight(kind){if(fighting)return;fighting=true;ico("dog",false);ico("cat",false);var b=kind==="b";["dog","cat","ns","ie"].forEach(function(i){$(i).style.display="none"});var f=$("fight"),sv=f.querySelectorAll("svg"),us=f.querySelectorAll("use");
  function look(){sv[0].setAttribute("viewBox",b?"0 0 48 48":"0 0 64 48");sv[1].setAttribute("viewBox",b?"0 0 48 48":"0 0 64 48");us[0].setAttribute("href",b?"#s-ns":"#s-dog");us[1].setAttribute("href",b?"#s-ie":"#s-cat")}look();
  f.style.display="block";f.className=(b?"bf ":"")+"go";var S=b?["$$$$","$$$$"]:null;say(b?"$$$$":"BOW-WOW!",b?"$$$$":"HISS!");
  fTm=[setTimeout(function(){say(b?"$$$$":"GRRR!",b?"$$$$":"MRROWR!")},700),setTimeout(function(){say(b?"$$$$":"RUFF!",b?"$$$$":"FFFT!")},1400),
  setTimeout(function(){f.className=b?"bf":"";say("...","...")},2300),setTimeout(function(){say("What fight?","Not me.")},3200),
- setTimeout(function(){f.style.display="none";say();fighting=false;lastFight=performance.now();b=false;look()},4800)]}
+ setTimeout(function(){f.style.display="none";say();fighting=false;ico("dog",true);ico("cat",true);lastFight=performance.now();b=false;look()},4800)]}
 document.addEventListener("pointerdown",function(ev){var t=ev.target.closest&&ev.target.closest("[data-act]");if(!t)return;var a=t.getAttribute("data-act"),n=performance.now();
  if((a==="dog"&&alive("cat"))||(a==="cat"&&alive("dog")))fight();else if((a==="ns"&&alive("ie"))||(a==="ie"&&alive("ns")))fight("b")});
 var yt=null,ytReady=false,ytWant=false;
@@ -219,4 +220,4 @@ $("off").addEventListener("click",function(){offPend=false;ytWant=false;try{yt&&
 })();
 </script>
 </body>
-</html>
+ </html>
