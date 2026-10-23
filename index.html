@@ -27,9 +27,9 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 #i4 .g,#i5 .g{width:56px}
 .icon:active .g{transform:translate(1px,1px)}
 @media(min-width:900px) and (min-height:500px){.icon{width:110px;font-size:13px}.icon .g{width:64px;height:64px}#i4 .g{width:80px}#i5 .g{width:80px}}
-@media(min-width:640px){.icons{position:static;display:contents}.icon{position:absolute;z-index:2}#i1{left:2%;top:36%}#i2{right:2%;top:10%}#i3{right:2%;top:36%}#i4{right:2%;top:62%}#i5{left:2%;top:62%}#i6{left:2%;top:10%}.stage{top:0;padding:0 130px 46px 130px}}
-@media(max-height:480px) and (min-width:640px){.icon .g{width:34px;height:34px}#i4 .g{width:44px}#i5 .g{width:44px}.box{font-size:15px!important;padding:10px!important}.body{padding:10px!important}#i2{top:4%}#i3{top:30%}#i4{top:56%}#i5{top:56%}#i6{top:4%}#i1{top:32%}}
-@media(max-width:639px){.icons{flex-wrap:wrap;row-gap:6px}.icon{width:30%}.stage{top:178px}}
+@media(min-width:640px){.icons{position:static;display:contents}.icon{position:absolute;z-index:2}#i1{left:2%;top:28%}#i2{right:2%;top:10%}#i3{right:2%;top:36%}#i4{right:2%;top:62%}#i5{left:2%;top:52%}#i6{left:2%;top:4%}#i7{left:2%;top:76%}.stage{top:0;padding:0 130px 46px 130px}}
+@media(max-height:480px) and (min-width:640px){.icon .g{width:34px;height:34px}#i4 .g{width:44px}#i5 .g{width:44px}.box{font-size:15px!important;padding:10px!important}.body{padding:10px!important}#i2{top:4%}#i3{top:30%}#i4{top:56%}#i5{top:50%}#i6{top:2%}#i7{top:74%}#i1{top:26%}}
+@media(max-width:639px){.icons{flex-wrap:wrap;row-gap:6px}.icon{width:24%}.stage{top:178px}}
 @media(max-height:480px) and (max-width:639px){.stage{top:70px}}
 .new{color:#ff0;font-size:11px;position:absolute;top:-10px;left:50%;transform:translateX(-50%) ;animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
 .visits{position:absolute;right:8px;bottom:50px;z-index:3;background:#000;color:#fff;padding:4px 8px;font-family:"Courier New",monospace;font-size:14px;z-index:2}
@@ -46,6 +46,10 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 #off{position:fixed;inset:0;background:#000;color:#ff8c00;z-index:100;display:none;align-items:center;justify-content:center;text-align:center;font-family:"Courier New",monospace;font-size:clamp(18px,4vw,28px);padding:20px;cursor:pointer}
 #dog{position:fixed;bottom:60px;left:-120px;z-index:60;display:none}
 #dog span{position:absolute;top:-30px;left:20px;background:#fff;border:2px solid #000;padding:2px 8px;font:bold 16px Arial;white-space:nowrap}
+#irc{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);width:min(92vw,420px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:52;display:none}
+#irc .log{background:#fff;color:#000;font:14px/1.5 "Courier New",monospace;padding:8px;height:76px;overflow:auto;border:2px solid;border-color:#808080 #fff #fff #808080;text-align:left}
+#irc .sys{color:#7f007f}#irc .nick{color:#d01010;font-weight:bold}
+#irc .inp{margin-top:4px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;padding:3px 6px;font:14px "Courier New",monospace;color:#808080;text-align:left}
 #cat{position:fixed;bottom:100px;right:-120px;z-index:60;display:none}
 #cat span{position:absolute;top:-30px;right:20px;background:#fff;border:2px solid #000;padding:2px 8px;font:bold 16px Arial;white-space:nowrap}
 #cat svg{transform:scaleX(-1)}
@@ -78,6 +82,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 <symbol id="s-dog" viewBox="0 0 64 48" shape-rendering="crispEdges"><rect x="14" y="14" width="30" height="14" fill="#b87333"/><rect x="40" y="8" width="14" height="12" fill="#b87333"/><rect x="52" y="12" width="8" height="6" fill="#d9a066"/><rect x="40" y="4" width="5" height="8" fill="#7a4a1e"/><rect x="56" y="12" width="3" height="3" fill="#000"/><rect x="48" y="11" width="3" height="3" fill="#000"/><rect x="14" y="28" width="5" height="12" fill="#a0602a"/><rect x="24" y="28" width="5" height="10" fill="#a0602a"/><rect x="34" y="28" width="5" height="12" fill="#a0602a"/><rect x="42" y="28" width="5" height="10" fill="#a0602a"/><rect x="6" y="8" width="8" height="5" fill="#b87333"/><rect x="2" y="4" width="6" height="5" fill="#b87333"/><rect x="22" y="14" width="12" height="14" fill="#fff" opacity=".35"/></symbol>
 <symbol id="s-cat" viewBox="0 0 64 48" shape-rendering="crispEdges"><rect x="14" y="16" width="28" height="14" fill="#8c8c8c"/><rect x="40" y="10" width="14" height="13" fill="#8c8c8c"/><rect x="40" y="5" width="4" height="6" fill="#6e6e6e"/><rect x="50" y="5" width="4" height="6" fill="#6e6e6e"/><rect x="42" y="14" width="3" height="3" fill="#ffe600"/><rect x="49" y="14" width="3" height="3" fill="#ffe600"/><rect x="46" y="18" width="3" height="2" fill="#ff8aa0"/><rect x="54" y="17" width="5" height="1" fill="#000"/><rect x="38" y="16" width="5" height="1" fill="#000" opacity="0"/><rect x="14" y="30" width="5" height="10" fill="#767676"/><rect x="24" y="30" width="5" height="10" fill="#767676"/><rect x="34" y="30" width="5" height="10" fill="#767676"/><rect x="42" y="30" width="5" height="10" fill="#767676"/><rect x="8" y="8" width="4" height="20" fill="#8c8c8c"/><rect x="10" y="24" width="6" height="5" fill="#8c8c8c"/><rect x="20" y="16" width="4" height="14" fill="#6e6e6e"/><rect x="28" y="16" width="4" height="14" fill="#6e6e6e"/><rect x="36" y="16" width="3" height="14" fill="#6e6e6e"/></symbol>
 <symbol id="s-nap" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="12" y="14" width="24" height="22" fill="#f0a030"/><rect x="12" y="8" width="5" height="8" fill="#d98a1c"/><rect x="31" y="8" width="5" height="8" fill="#d98a1c"/><rect x="16" y="22" width="5" height="5" fill="#fff"/><rect x="27" y="22" width="5" height="5" fill="#fff"/><rect x="18" y="24" width="3" height="3" fill="#000"/><rect x="29" y="24" width="3" height="3" fill="#000"/><rect x="22" y="29" width="4" height="3" fill="#ff7a90"/><rect x="14" y="31" width="7" height="1" fill="#000" opacity=".5"/><rect x="27" y="31" width="7" height="1" fill="#000" opacity=".5"/><rect x="10" y="4" width="28" height="4" fill="#222"/><rect x="8" y="6" width="4" height="22" fill="#222"/><rect x="36" y="6" width="4" height="22" fill="#222"/><rect x="5" y="16" width="7" height="14" fill="#111"/><rect x="36" y="16" width="7" height="14" fill="#111"/></symbol>
+<symbol id="s-irc" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="4" y="8" width="40" height="28" fill="#fff" stroke="#000" stroke-width="2"/><rect x="4" y="8" width="40" height="6" fill="#000080"/><rect x="10" y="38" width="8" height="6" fill="#000"/><rect x="10" y="34" width="4" height="4" fill="#fff"/><rect x="8" y="18" width="14" height="3" fill="#d01010"/><rect x="8" y="24" width="24" height="3" fill="#1030c0"/><rect x="8" y="30" width="18" height="3" fill="#008000"/><rect x="30" y="17" width="10" height="6" fill="#ffe600"/></symbol>
 </defs></svg>
 <div class="icons">
 <div class="icon" id="i1" data-act="worker" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-worker"/></svg>UNDER<br>CONSTRUCTION</div>
@@ -86,6 +91,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 <div class="icon" id="i4" data-act="dog" role="button" tabindex="0"><svg class="g" viewBox="0 0 64 48"><use href="#s-dog"/></svg>DOG</div>
 <div class="icon" id="i5" data-act="cat" role="button" tabindex="0"><svg class="g" viewBox="0 0 64 48"><use href="#s-cat"/></svg>CAT</div>
 <div class="icon" id="i6" data-act="napster" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-nap"/></svg>NAPSTER</div>
+<div class="icon" id="i7" data-act="irc" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-irc"/></svg>mIRC</div>
 </div>
 <div class="stage">
 
@@ -101,6 +107,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 
 <div class="dlg" id="dlg"><div class="tb"><span id="dt">Error</span><button class="btn x" data-act="dlgclose">x</button></div>
  <div class="b"><span class="ic" id="di"></span><span id="dm"></span></div><button class="btn ok" data-act="dlgclose">OK</button></div>
+<div id="irc"><div class="tb"><span>mIRC - [#chat]</span><button class="btn x" data-act="ircclose">x</button></div><div class="log" id="irclog"></div><div class="inp">&nbsp;</div></div>
 <div id="cat"><svg viewBox="0 0 64 48" width="90" height="68"><use href="#s-cat"/></svg><span>MEOW!</span></div>
 <div id="fight"><div class="dust"></div><svg class="fd" viewBox="0 0 64 48" width="90" height="68"><use href="#s-dog"/></svg><svg class="fc" viewBox="0 0 64 48" width="90" height="68"><use href="#s-cat"/></svg><div class="st">*</div><div class="b" id="fb1"></div><div class="b" id="fb2"></div></div>
 <div id="dog"><svg viewBox="0 0 64 48" width="90" height="68"><use href="#s-dog"/></svg><span>WOOF!</span></div>
@@ -119,6 +126,7 @@ var fighting=false,lastFight=0,pDog=-1e9,pCat=-1e9,fTm=[];
 function solo(id,anim){var d=$(id);d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation=anim+" 3s linear forwards";setTimeout(function(){if(!fighting)d.style.display="none"},3100)}
 function dog(){if(fighting||performance.now()-lastFight<1200)return;solo("dog","run")}
 function cat(){if(fighting||performance.now()-lastFight<1200)return;solo("cat","runL")}
+function ircOpen(){var t=new Date(),h=("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2);$("irclog").innerHTML='<div class="sys">['+h+'] * Now talking in #chat</div><div>['+h+'] &lt;<span class="nick">Total Stranger</span>&gt; asl?</div>';$("irc").style.display="block"}
 function say(a,b){$("fb1").textContent=a||"";$("fb1").className="b"+(a?" on":"");$("fb2").textContent=b||"";$("fb2").className="b"+(b?" on":"")}
 function fight(){if(fighting)return;fighting=true;$("dog").style.display="none";$("cat").style.display="none";var f=$("fight");f.style.display="block";f.className="go";say("BOW-WOW!","HISS!");
  fTm=[setTimeout(function(){say("GRRR!","MRROWR!")},700),setTimeout(function(){say("RUFF!","FFFT!")},1400),
@@ -145,6 +153,8 @@ var acts={
  mail:function(e){anim(e,"shake");dlg("You've got mail!","i","0 new messages.")},
  dog:function(e){dog()},
  cat:function(e){cat()},
+ irc:function(e){anim(e,"shake");ircOpen()},
+ ircclose:function(){$("irc").style.display="none"},
  napster:function(e){anim(e,"shake");dlg("Napster","e","bad idea! cops are coming!")},
  start:function(){ytInit();var m=$("menu");m.style.display=m.style.display==="block"?"none":"block"},
  shutdown:function(){$("menu").style.display="none";shutSound();offWait()},
