@@ -49,7 +49,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 #irc{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);width:min(92vw,420px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:52;display:none}
 #irc .log{background:#fff;color:#000;font:14px/1.5 "Courier New",monospace;padding:8px;height:76px;overflow:auto;border:2px solid;border-color:#808080 #fff #fff #808080;text-align:left}
 #irc .sys{color:#7f007f}#irc .nick{color:#d01010;font-weight:bold}
-#irc .inp{margin-top:4px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;padding:3px 6px;font:14px "Courier New",monospace;color:#808080;text-align:left}
+#irc .inp{margin-top:4px;min-height:26px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;padding:3px 6px;font:14px "Courier New",monospace;color:#000;text-align:left}
 #cat{position:fixed;bottom:100px;right:-120px;z-index:60;display:none}
 #cat span{position:absolute;top:-30px;right:20px;background:#fff;border:2px solid #000;padding:2px 8px;font:bold 16px Arial;white-space:nowrap}
 #cat svg{transform:scaleX(-1)}
@@ -107,7 +107,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 
 <div class="dlg" id="dlg"><div class="tb"><span id="dt">Error</span><button class="btn x" data-act="dlgclose">x</button></div>
  <div class="b"><span class="ic" id="di"></span><span id="dm"></span></div><button class="btn ok" data-act="dlgclose">OK</button></div>
-<div id="irc"><div class="tb"><span>mIRC - [#chat]</span><button class="btn x" data-act="ircclose">x</button></div><div class="log" id="irclog"></div><div class="inp">&nbsp;</div></div>
+<div id="irc"><div class="tb"><span>mIRC - [#chat]</span><button class="btn x" data-act="ircclose">x</button></div><div class="log" id="irclog"></div><div class="inp" id="ircinp"></div></div>
 <div id="cat"><svg viewBox="0 0 64 48" width="90" height="68"><use href="#s-cat"/></svg><span>MEOW!</span></div>
 <div id="fight"><div class="dust"></div><svg class="fd" viewBox="0 0 64 48" width="90" height="68"><use href="#s-dog"/></svg><svg class="fc" viewBox="0 0 64 48" width="90" height="68"><use href="#s-cat"/></svg><div class="st">*</div><div class="b" id="fb1"></div><div class="b" id="fb2"></div></div>
 <div id="dog"><svg viewBox="0 0 64 48" width="90" height="68"><use href="#s-dog"/></svg><span>WOOF!</span></div>
@@ -124,16 +124,17 @@ function dlg(t,i,m){$("dt").textContent=t;var d=$("di");d.className="ic "+i;d.te
 function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
 var fighting=false,lastFight=0,pDog=-1e9,pCat=-1e9,fTm=[];
 function solo(id,anim){var d=$(id);d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation=anim+" 3s linear forwards";setTimeout(function(){if(!fighting)d.style.display="none"},3100)}
+function alive(id){var d=$(id);if(d.style.display!=="block")return false;var r=d.querySelector("svg").getBoundingClientRect();return id==="dog"?r.right<innerWidth:r.left>0}
 function dog(){if(fighting||performance.now()-lastFight<1200)return;solo("dog","run")}
 function cat(){if(fighting||performance.now()-lastFight<1200)return;solo("cat","runL")}
-function ircOpen(){var t=new Date(),h=("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2);$("irclog").innerHTML='<div class="sys">['+h+'] * Now talking in #chat</div><div>['+h+'] &lt;<span class="nick">Total Stranger</span>&gt; asl?</div>';$("irc").style.display="block"}
+function ircOpen(){var t=new Date(),h=("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2);$("irclog").innerHTML='<div class="sys">['+h+'] * Now talking in #chat</div><div>['+h+'] &lt;<span class="nick">Total Stranger</span>&gt; asl?</div>';$("ircinp").textContent="No cybering!";$("irc").style.display="block"}
 function say(a,b){$("fb1").textContent=a||"";$("fb1").className="b"+(a?" on":"");$("fb2").textContent=b||"";$("fb2").className="b"+(b?" on":"")}
 function fight(){if(fighting)return;fighting=true;$("dog").style.display="none";$("cat").style.display="none";var f=$("fight");f.style.display="block";f.className="go";say("BOW-WOW!","HISS!");
  fTm=[setTimeout(function(){say("GRRR!","MRROWR!")},700),setTimeout(function(){say("RUFF!","FFFT!")},1400),
  setTimeout(function(){f.className="";say("...","...")},2300),setTimeout(function(){say("What fight?","Not me.")},3200),
  setTimeout(function(){f.style.display="none";say();fighting=false;lastFight=performance.now()},4800)]}
 document.addEventListener("pointerdown",function(ev){var t=ev.target.closest&&ev.target.closest("[data-act]");if(!t)return;var a=t.getAttribute("data-act"),n=performance.now();
- if(a==="dog"){pDog=n;if(n-pCat<1500){pCat=-1e9;pDog=-1e9;fight()}}else if(a==="cat"){pCat=n;if(n-pDog<1500){pCat=-1e9;pDog=-1e9;fight()}}});
+ if((a==="dog"&&alive("cat"))||(a==="cat"&&alive("dog")))fight()});
 var yt=null,ytReady=false,ytWant=false;
 var ytS=false;function ytInit(){if(ytS)return;ytS=true;var d=document.createElement("div");d.id="ytbox";d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999";d.innerHTML='<div id="ytp"></div>';document.body.appendChild(d);
  var mk=function(){yt=new YT.Player("ytp",{width:200,height:113,videoId:"z1JImdh0Z78",playerVars:{playsinline:1,controls:1},events:{onReady:function(){ytReady=true;if(ytWant)ytPlay()},onStateChange:function(e){(window.__yl=window.__yl||[]).push([e.data,Math.round(performance.now())]);if(e.data===1){ytOk=true;ytHide();ytStart=true}else if(e.data===0&&ytStart&&offPend)offNow()}}})};
@@ -150,7 +151,7 @@ function off(h){var o=$("off");o.innerHTML=h;o.style.display="flex"}
 var acts={
  worker:function(e){anim(e,"hop");dlg("Under Construction","e","UNDERCONSTRUCTION.EXE has performed an illegal operation and will be shut down.")},
  globe:function(e){anim(e,"spin");dlg("Internet","q","Cannot connect to the Internet. Please wait for the modem to finish screaming.")},
- mail:function(e){anim(e,"shake");dlg("You've got mail!","i","0 new messages.")},
+ mail:function(e){anim(e,"shake");dlg("You've got mail!","i","0 new messages. Loser.")},
  dog:function(e){dog()},
  cat:function(e){cat()},
  irc:function(e){anim(e,"shake");ircOpen()},
