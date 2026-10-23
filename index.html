@@ -72,6 +72,18 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 .spin .g{animation:spin .8s 2}
 @keyframes hop{50%{transform:translateY(-22px)}}
 .hop .g{animation:hop .3s 3}
+.icons2{position:absolute;left:0;right:0;bottom:46px;display:flex;justify-content:center;gap:clamp(20px,8vw,90px);z-index:2}.icons2 .icon{position:relative!important;left:auto!important;right:auto!important;top:auto!important}
+.stage{bottom:150px!important}
+@media(min-width:640px){.stage{padding-bottom:150px!important;bottom:0!important}}
+@media(max-height:480px){.icons2{bottom:44px}.stage{bottom:100px!important}}
+@media(max-height:480px) and (min-width:640px){.stage{bottom:0!important;padding-bottom:100px!important}}
+#ns{position:fixed;bottom:150px;left:-120px;z-index:60;display:none}#ns span,#ie span{position:absolute;top:-30px;background:#fff;border:2px solid #000;padding:2px 8px;font:bold 16px Arial;white-space:nowrap}#ns span{left:20px}
+#ie{position:fixed;bottom:200px;right:-120px;z-index:60;display:none}#ie span{right:20px}
+#ns svg,#ie svg{animation:bob .25s infinite}
+@keyframes jigi{50%{transform:translate(6px,-6px) rotate(8deg)}}#fight.bf.go .fc{animation-name:jigi}#fight.bf .fc{transform:none}
+#pl{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);width:min(92vw,360px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:53;display:none}
+#pl .scr{background:#0a1a0a;color:#3f3;font:14px "Courier New",monospace;padding:8px;margin:3px 0;text-align:left}#pl .bar{height:10px;background:#143;margin-top:6px}#pl .bar i{display:block;height:100%;width:0;background:#3f3}
+@media(max-width:639px){.icons2{bottom:82px}.stage{bottom:190px!important}}
 </style>
 </head>
 <body>
@@ -79,6 +91,9 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 <symbol id="s-worker" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="18" y="14" width="12" height="10" fill="#f2b97a"/><rect x="16" y="8" width="16" height="8" fill="#ffd400"/><rect x="14" y="14" width="20" height="3" fill="#e0b000"/><rect x="16" y="24" width="16" height="14" fill="#ffd400"/><rect x="16" y="38" width="6" height="8" fill="#c8a000"/><rect x="26" y="38" width="6" height="8" fill="#c8a000"/><rect x="32" y="26" width="3" height="20" fill="#7a4a1e"/><rect x="30" y="42" width="10" height="4" fill="#888"/><rect x="38" y="44" width="8" height="3" fill="#777"/></symbol>
 <symbol id="s-globe" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#2a64d8" stroke="#103a8c" stroke-width="2"/><path d="M12 14c6-4 12-2 14 3s-4 6-3 10-6 6-9 2-6-10-2-15z" fill="#3fae3f"/><path d="M30 28c4-2 8 0 8 5s-4 7-7 5-3-8-1-10z" fill="#3fae3f"/><path d="M28 8c4 0 8 2 9 5-4 1-8-1-9-5z" fill="#3fae3f"/><ellipse cx="17" cy="14" rx="6" ry="3" fill="#fff" opacity=".3"/></symbol>
 <symbol id="s-mail" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="22" y="26" width="5" height="20" fill="#7a4a1e"/><rect x="6" y="12" width="32" height="16" fill="#d8d8d8" stroke="#555" stroke-width="2"/><rect x="6" y="12" width="12" height="16" fill="#aaa"/><rect x="30" y="4" width="3" height="14" fill="#555"/><rect x="33" y="4" width="10" height="7" fill="#e02020"/></symbol>
+<symbol id="s-ns" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="2" y="2" width="44" height="44" fill="#1c3d8f" stroke="#0b1a4a" stroke-width="2"/><rect x="10" y="10" width="6" height="28" fill="#fff"/><rect x="32" y="10" width="6" height="28" fill="#fff"/><rect x="16" y="12" width="5" height="6" fill="#fff"/><rect x="20" y="17" width="5" height="6" fill="#fff"/><rect x="24" y="22" width="5" height="6" fill="#fff"/><rect x="28" y="27" width="5" height="6" fill="#fff"/><rect x="36" y="4" width="6" height="4" fill="#5cff5c"/><rect x="30" y="6" width="6" height="2" fill="#9fffa0"/></symbol>
+<symbol id="s-ie" viewBox="0 0 48 48" shape-rendering="crispEdges"><circle cx="24" cy="26" r="13" fill="none" stroke="#1030c8" stroke-width="9" stroke-dasharray="62 20" transform="rotate(35 24 26)"/><rect x="11" y="22" width="29" height="6" fill="#1030c8"/><rect x="15" y="24" width="20" height="2" fill="#dfe6ff"/><ellipse cx="24" cy="25" rx="23" ry="7" fill="none" stroke="#f2d100" stroke-width="3" transform="rotate(-38 24 25)"/></symbol>
+<symbol id="s-play" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="3" y="6" width="42" height="36" fill="#3a3a44" stroke="#111" stroke-width="2"/><rect x="7" y="10" width="34" height="12" fill="#0a1a0a"/><rect x="9" y="16" width="3" height="4" fill="#3f3"/><rect x="14" y="13" width="3" height="7" fill="#3f3"/><rect x="19" y="15" width="3" height="5" fill="#3f3"/><rect x="24" y="12" width="3" height="8" fill="#3f3"/><rect x="29" y="14" width="3" height="6" fill="#3f3"/><polygon points="12,26 12,38 22,32" fill="#e8e8e8"/><rect x="27" y="27" width="10" height="10" fill="#e8e8e8"/></symbol>
 <symbol id="s-dog" viewBox="0 0 64 48" shape-rendering="crispEdges"><rect x="14" y="14" width="30" height="14" fill="#b87333"/><rect x="40" y="8" width="14" height="12" fill="#b87333"/><rect x="52" y="12" width="8" height="6" fill="#d9a066"/><rect x="40" y="4" width="5" height="8" fill="#7a4a1e"/><rect x="56" y="12" width="3" height="3" fill="#000"/><rect x="48" y="11" width="3" height="3" fill="#000"/><rect x="14" y="28" width="5" height="12" fill="#a0602a"/><rect x="24" y="28" width="5" height="10" fill="#a0602a"/><rect x="34" y="28" width="5" height="12" fill="#a0602a"/><rect x="42" y="28" width="5" height="10" fill="#a0602a"/><rect x="6" y="8" width="8" height="5" fill="#b87333"/><rect x="2" y="4" width="6" height="5" fill="#b87333"/><rect x="22" y="14" width="12" height="14" fill="#fff" opacity=".35"/></symbol>
 <symbol id="s-cat" viewBox="0 0 64 48" shape-rendering="crispEdges"><rect x="14" y="16" width="28" height="14" fill="#8c8c8c"/><rect x="40" y="10" width="14" height="13" fill="#8c8c8c"/><rect x="40" y="5" width="4" height="6" fill="#6e6e6e"/><rect x="50" y="5" width="4" height="6" fill="#6e6e6e"/><rect x="42" y="14" width="3" height="3" fill="#ffe600"/><rect x="49" y="14" width="3" height="3" fill="#ffe600"/><rect x="46" y="18" width="3" height="2" fill="#ff8aa0"/><rect x="54" y="17" width="5" height="1" fill="#000"/><rect x="38" y="16" width="5" height="1" fill="#000" opacity="0"/><rect x="14" y="30" width="5" height="10" fill="#767676"/><rect x="24" y="30" width="5" height="10" fill="#767676"/><rect x="34" y="30" width="5" height="10" fill="#767676"/><rect x="42" y="30" width="5" height="10" fill="#767676"/><rect x="8" y="8" width="4" height="20" fill="#8c8c8c"/><rect x="10" y="24" width="6" height="5" fill="#8c8c8c"/><rect x="20" y="16" width="4" height="14" fill="#6e6e6e"/><rect x="28" y="16" width="4" height="14" fill="#6e6e6e"/><rect x="36" y="16" width="3" height="14" fill="#6e6e6e"/></symbol>
 <symbol id="s-nap" viewBox="0 0 48 48" shape-rendering="crispEdges"><rect x="12" y="14" width="24" height="22" fill="#f0a030"/><rect x="12" y="8" width="5" height="8" fill="#d98a1c"/><rect x="31" y="8" width="5" height="8" fill="#d98a1c"/><rect x="16" y="22" width="5" height="5" fill="#fff"/><rect x="27" y="22" width="5" height="5" fill="#fff"/><rect x="18" y="24" width="3" height="3" fill="#000"/><rect x="29" y="24" width="3" height="3" fill="#000"/><rect x="22" y="29" width="4" height="3" fill="#ff7a90"/><rect x="14" y="31" width="7" height="1" fill="#000" opacity=".5"/><rect x="27" y="31" width="7" height="1" fill="#000" opacity=".5"/><rect x="10" y="4" width="28" height="4" fill="#222"/><rect x="8" y="6" width="4" height="22" fill="#222"/><rect x="36" y="6" width="4" height="22" fill="#222"/><rect x="5" y="16" width="7" height="14" fill="#111"/><rect x="36" y="16" width="7" height="14" fill="#111"/></symbol>
@@ -93,6 +108,7 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 <div class="icon" id="i6" data-act="napster" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-nap"/></svg>NAPSTER</div>
 <div class="icon" id="i7" data-act="irc" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-irc"/></svg>mIRC</div>
 </div>
+<div class="icons2"><div class="icon" id="i8" data-act="ns" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-ns"/></svg>NETSCAPE</div><div class="icon" id="i9" data-act="ie" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-ie"/></svg>EXPLORER</div><div class="icon" id="i10" data-act="player" role="button" tabindex="0"><svg class="g" viewBox="0 0 48 48"><use href="#s-play"/></svg>PLAYER</div></div>
 <div class="stage">
 
 <div class="win">
@@ -108,6 +124,8 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 <div class="dlg" id="dlg"><div class="tb"><span id="dt">Error</span><button class="btn x" data-act="dlgclose">x</button></div>
  <div class="b"><span class="ic" id="di"></span><span id="dm"></span></div><button class="btn ok" data-act="dlgclose">OK</button></div>
 <div id="irc"><div class="tb"><span>mIRC - [#chat]</span><button class="btn x" data-act="ircclose">x</button></div><div class="log" id="irclog"></div><div class="inp" id="ircinp"></div></div>
+<div id="ns"><svg viewBox="0 0 48 48" width="68" height="68"><use href="#s-ns"/></svg><span>$$$$</span></div><div id="ie"><svg viewBox="0 0 48 48" width="68" height="68"><use href="#s-ie"/></svg><span>$$$$</span></div>
+<div id="pl"><div class="tb"><span>Audio Player</span><button class="btn x" data-act="plclose">x</button></div><div class="scr"><div id="pltrk">Smooth_Jazz_Relaxation.mp3</div><div class="bar"><i id="plbar"></i></div><div id="pltm">0:00</div></div></div>
 <div id="cat"><svg viewBox="0 0 64 48" width="90" height="68"><use href="#s-cat"/></svg><span>MEOW!</span></div>
 <div id="fight"><div class="dust"></div><svg class="fd" viewBox="0 0 64 48" width="90" height="68"><use href="#s-dog"/></svg><svg class="fc" viewBox="0 0 64 48" width="90" height="68"><use href="#s-cat"/></svg><div class="st">*</div><div class="b" id="fb1"></div><div class="b" id="fb2"></div></div>
 <div id="dog"><svg viewBox="0 0 64 48" width="90" height="68"><use href="#s-dog"/></svg><span>WOOF!</span></div>
@@ -122,19 +140,23 @@ $("yrs").textContent=new Date().getFullYear()-1995;
 var vis=69+Math.floor(Math.random()*5);$("v").textContent=("000000"+vis).slice(-6);
 function dlg(t,i,m){$("dt").textContent=t;var d=$("di");d.className="ic "+i;d.textContent={e:"X",i:"i",q:"!"}[i];$("dm").textContent=m;$("dlg").style.display="block"}
 function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
-var fighting=false,lastFight=0,pDog=-1e9,pCat=-1e9,fTm=[];
+var fighting=false,lastFight=0,pDog=-1e9,pCat=-1e9,pNs=-1e9,pIe=-1e9,fTm=[];
 function solo(id,anim){var d=$(id);d.style.display="block";d.style.animation="none";void d.offsetWidth;d.style.animation=anim+" 3s linear forwards";setTimeout(function(){if(!fighting)d.style.display="none"},3100)}
 function alive(id){var d=$(id);if(d.style.display!=="block")return false;var r=d.querySelector("svg").getBoundingClientRect();return id==="dog"?r.right<innerWidth:r.left>0}
 function dog(){if(fighting||performance.now()-lastFight<1200)return;solo("dog","run")}
+function ns(){if(fighting||performance.now()-lastFight<1200)return;solo("ns","run")}
+function ie(){if(fighting||performance.now()-lastFight<1200)return;solo("ie","runL")}
 function cat(){if(fighting||performance.now()-lastFight<1200)return;solo("cat","runL")}
 function ircOpen(){var t=new Date(),h=("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2);$("irclog").innerHTML='<div class="sys">['+h+'] * Now talking in #chat</div><div>['+h+'] &lt;<span class="nick">Total Stranger</span>&gt; asl?</div>';$("ircinp").textContent="No cybering!";$("irc").style.display="block"}
 function say(a,b){$("fb1").textContent=a||"";$("fb1").className="b"+(a?" on":"");$("fb2").textContent=b||"";$("fb2").className="b"+(b?" on":"")}
-function fight(){if(fighting)return;fighting=true;$("dog").style.display="none";$("cat").style.display="none";var f=$("fight");f.style.display="block";f.className="go";say("BOW-WOW!","HISS!");
- fTm=[setTimeout(function(){say("GRRR!","MRROWR!")},700),setTimeout(function(){say("RUFF!","FFFT!")},1400),
- setTimeout(function(){f.className="";say("...","...")},2300),setTimeout(function(){say("What fight?","Not me.")},3200),
- setTimeout(function(){f.style.display="none";say();fighting=false;lastFight=performance.now()},4800)]}
+function fight(kind){if(fighting)return;fighting=true;var b=kind==="b";["dog","cat","ns","ie"].forEach(function(i){$(i).style.display="none"});var f=$("fight"),sv=f.querySelectorAll("svg"),us=f.querySelectorAll("use");
+ function look(){sv[0].setAttribute("viewBox",b?"0 0 48 48":"0 0 64 48");sv[1].setAttribute("viewBox",b?"0 0 48 48":"0 0 64 48");us[0].setAttribute("href",b?"#s-ns":"#s-dog");us[1].setAttribute("href",b?"#s-ie":"#s-cat")}look();
+ f.style.display="block";f.className=(b?"bf ":"")+"go";var S=b?["$$$$","$$$$"]:null;say(b?"$$$$":"BOW-WOW!",b?"$$$$":"HISS!");
+ fTm=[setTimeout(function(){say(b?"$$$$":"GRRR!",b?"$$$$":"MRROWR!")},700),setTimeout(function(){say(b?"$$$$":"RUFF!",b?"$$$$":"FFFT!")},1400),
+ setTimeout(function(){f.className=b?"bf":"";say("...","...")},2300),setTimeout(function(){say("What fight?","Not me.")},3200),
+ setTimeout(function(){f.style.display="none";say();fighting=false;lastFight=performance.now();b=false;look()},4800)]}
 document.addEventListener("pointerdown",function(ev){var t=ev.target.closest&&ev.target.closest("[data-act]");if(!t)return;var a=t.getAttribute("data-act"),n=performance.now();
- if((a==="dog"&&alive("cat"))||(a==="cat"&&alive("dog")))fight()});
+ if((a==="dog"&&alive("cat"))||(a==="cat"&&alive("dog")))fight();else if(a==="ns"){pNs=n;if(n-pIe<1500){pNs=pIe=-1e9;fight("b")}}else if(a==="ie"){pIe=n;if(n-pNs<1500){pNs=pIe=-1e9;fight("b")}}});
 var yt=null,ytReady=false,ytWant=false;
 var ytS=false;function ytInit(){if(ytS)return;ytS=true;var d=document.createElement("div");d.id="ytbox";d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999";d.innerHTML='<div id="ytp"></div>';document.body.appendChild(d);
  var mk=function(){yt=new YT.Player("ytp",{width:200,height:113,videoId:"z1JImdh0Z78",playerVars:{playsinline:1,controls:1},events:{onReady:function(){ytReady=true;if(ytWant)ytPlay()},onStateChange:function(e){(window.__yl=window.__yl||[]).push([e.data,Math.round(performance.now())]);if(e.data===1){ytOk=true;ytHide();ytStart=true}else if(e.data===0&&ytStart&&offPend)offNow()}}})};
@@ -145,15 +167,28 @@ function ytPlay(){ytOk=false;try{yt.seekTo(0);yt.playVideo()}catch(e){}
  setTimeout(function(){if(!ytOk){var d=document.getElementById("ytbox");if(d)d.style.cssText="position:fixed;left:50%;bottom:60px;margin-left:-100px;width:200px;height:113px;z-index:99999";var k=document.getElementById("ytskip");if(!k){k=document.createElement("button");k.id="ytskip";k.className="btn";k.setAttribute("data-act","skipoff");k.textContent="Skip sound";document.body.appendChild(k)}k.style.cssText="position:fixed;left:50%;bottom:20px;margin-left:-50px;width:100px;z-index:99999;display:block"}},1500)}
 function shutSound(){ytWant=true;if(!yt)ytInit();else if(ytReady)ytPlay()}
 var ytStart=false,offPend=false,ytT1=0,ytT2=0;
-function offNow(){clearTimeout(ytT1);clearTimeout(ytT2);if(!offPend)return;offPend=false;ytHide();off("<div>It's now safe to turn off<br>your computer.<br><br><small>(tap to turn it back on)</small></div>")}
+function offNow(){clearTimeout(ytT1);clearTimeout(ytT2);if(!offPend)return;offPend=false;ytHide();off("<div>It's now safe to turn off<br>your computer.<br><br><small>(tap to turn it back on)</small><br><br><small>Jump scare intentional.</small></div>")}
 function offWait(){offPend=true;ytStart=false}
 function off(h){var o=$("off");o.innerHTML=h;o.style.display="flex"}
+var yt2=null,pl2=false,plT=0,plShown=false;
+function plFmt(s){s=Math.floor(s||0);return Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
+function plTick(){try{var c=yt2.getCurrentTime(),d=yt2.getDuration()||212;$("plbar").style.width=Math.min(100,c/d*100)+"%";$("pltm").textContent=plFmt(c)+" / "+plFmt(d)}catch(e){}}
+function plMk(){yt2=new YT.Player("ytp2",{width:200,height:113,videoId:"dQw4w9WgXcQ",playerVars:{playsinline:1,controls:1},events:{onReady:function(){pl2=true;try{yt2.playVideo()}catch(e){}},onStateChange:function(e){if(e.data===1){plShown=true;var d=document.getElementById("ytbox2");if(d)d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999";clearInterval(plT);plT=setInterval(plTick,500)}}}})}
+function plOpen(){$("pl").style.display="block";plShown=false;if(!document.getElementById("ytbox2")){var d=document.createElement("div");d.id="ytbox2";d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999";d.innerHTML='<div id="ytp2"></div>';document.body.appendChild(d);
+ if(window.YT&&YT.Player)plMk();else{var pv=window.onYouTubeIframeAPIReady;window.onYouTubeIframeAPIReady=function(){if(pv)pv();plMk()};if(!document.querySelector('script[src*="iframe_api"]')){var t=document.createElement("script");t.src="https://www.youtube.com/iframe_api";document.head.appendChild(t)}}}
+ else if(pl2){try{yt2.seekTo(0);yt2.playVideo()}catch(e){}}
+ setTimeout(function(){if(!plShown){var d=document.getElementById("ytbox2");if(d)d.style.cssText="position:fixed;left:50%;top:62%;margin-left:-100px;width:200px;height:113px;z-index:99999"}},1800)}
+function plStop(){$("pl").style.display="none";clearInterval(plT);try{yt2&&yt2.pauseVideo()}catch(e){}var d=document.getElementById("ytbox2");if(d)d.style.cssText="position:fixed;left:-9999px;top:0;width:200px;height:113px;z-index:99999"}
 var acts={
  worker:function(e){anim(e,"hop");dlg("Under Construction","e","UNDERCONSTRUCTION.EXE has performed an illegal operation and will be shut down.")},
  globe:function(e){anim(e,"spin");dlg("Internet","q","Cannot connect to the Internet. Please wait for the modem to finish screaming.")},
  mail:function(e){anim(e,"shake");dlg("You've got mail!","i","0 new messages. Loser.")},
  dog:function(e){dog()},
  cat:function(e){cat()},
+ ns:function(e){ns()},
+ ie:function(e){ie()},
+ player:function(e){anim(e,"shake");plOpen()},
+ plclose:function(){plStop()},
  irc:function(e){anim(e,"shake");ircOpen()},
  ircclose:function(){$("irc").style.display="none"},
  napster:function(e){anim(e,"shake");dlg("Napster","e","bad idea! cops are coming!")},
