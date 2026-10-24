@@ -37,6 +37,11 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 .task{position:absolute;left:0;right:0;bottom:0;height:42px;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;justify-content:space-between;padding:3px;z-index:30}
 .flag{width:16px;height:16px;display:inline-block;background:linear-gradient(90deg,#f33 50%,#3b3 50%) top/100% 50% no-repeat,linear-gradient(90deg,#39f 50%,#fc0 50%) bottom/100% 50% no-repeat}.start{font-size:16px;height:30px;display:flex;align-items:center;gap:6px}
 .tray{display:flex;align-items:center;gap:8px}.msn{display:block;flex:none;background:#c0c0c0;padding:0 2px}.clock{border:2px solid;border-color:#808080 #fff #fff #808080;padding:1px 10px;font-size:13px;line-height:1.15;text-align:right}.clock small{font-size:11px}
+#cmd{position:fixed;left:50%;top:30%;transform:translate(-50%,-50%);width:min(92vw,440px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:55;display:none}
+#cmd .con{background:#000;color:#c0c0c0;font:13px/1.35 "Courier New",monospace;padding:8px;height:150px;overflow:auto;text-align:left;white-space:pre-wrap;word-break:break-all;border:2px solid;border-color:#404040 #fff #fff #404040;margin-top:3px}
+#cmd .cur{display:inline-block;width:8px;height:13px;background:#c0c0c0;vertical-align:-2px;animation:bl .6s steps(2) infinite}
+#mod{position:fixed;left:0;top:0;right:0;bottom:0;z-index:200;display:none;background:transparent}
+.dlg.mdl{z-index:201!important}
 .dlg{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);width:min(88vw,380px);background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:1px 1px 0 #000,6px 6px 0 rgba(0,0,0,.3);padding:3px;z-index:50;display:none}
 .dlg .b{display:flex;gap:14px;padding:18px 14px;align-items:center}
 .dlg .ic{flex:none;width:34px;height:34px;border-radius:50%;color:#fff;font:bold 22px/34px Arial;text-align:center}.ic.e{background:#d01010}.ic.i{background:#1030c0}.ic.q{background:#e0a800}.dlg .ic.w,.dlg .ic.s{width:64px;height:64px;border-radius:0;background:none;font-size:0;line-height:0}
@@ -145,10 +150,10 @@ body{font-family:"MS Sans Serif",Tahoma,Arial,sans-serif;font-size:15px;color:#0
 
 </div>
 <div class="visits">Visits: <b id="v">000069</b></div>
-<div id="menu"><div data-act="shutdown">Shut Down...</div><div data-act="bsod">Do Not Click This</div></div>
+<div id="menu"><div data-act="cmd">CMD.exe</div><div data-act="shutdown">Shut Down...</div><div data-act="bsod">Do Not Click This</div></div>
 <div class="task"><button class="btn start" id="start" data-act="start"><i class="flag"></i>Start</button><div class="tray"><svg class="msn" data-act="msn" style="cursor:pointer" tabindex="0" viewBox="0 0 24 24" width="22" height="22" aria-label="MSN Messenger" role="img"><circle cx="9" cy="6.5" r="4" fill="#e8f6ff" stroke="#6fa0c8" stroke-width="1"/><path d="M2.5 21c0-6 2.5-9 6.5-9s6.5 3 6.5 9z" fill="#dff1fb" stroke="#6fa0c8" stroke-width="1"/><path d="M3.5 21c.2-5 2-8 5.5-8" fill="none" stroke="#9fc9e4" stroke-width="1"/><rect x="12" y="11.5" width="10" height="9.5" rx="1.5" fill="#7ed02a" stroke="#2f7a0a" stroke-width="1.4"/><rect x="14" y="14.5" width="6" height="3" rx=".8" fill="#4f9b12"/></svg><div class="clock" id="clock"></div></div></div>
 
-<div class="dlg" id="dlg"><div class="tb"><span id="dt">Error</span><button class="btn x" data-act="dlgclose">x</button></div>
+<div id="mod"></div><div id="cmd"><div class="tb"><span>MS-DOS Prompt</span><button class="btn x" data-act="cmdclose">x</button></div><div class="con" id="con"></div></div><div class="dlg" id="dlg"><div class="tb"><span id="dt">Error</span><button class="btn x" data-act="dlgclose">x</button></div>
  <div class="b"><span class="ic" id="di"></span><span id="dm"></span></div><button class="btn ok" data-act="dlgclose">OK</button></div>
 <div id="msnw"><div class="tb"><span>xX_b3st_fr1end_Xx - Conversation</span><button class="btn x" data-act="msnclose">x</button></div><div class="log" id="msnlog"></div><div class="inp">This is a pretend chat. Nobody is typing. Retard.</div></div>
 <div id="irc"><div class="tb"><span>mIRC - [#chat]</span><button class="btn x" data-act="ircclose">x</button></div><div class="log" id="irclog"></div><div class="inp" id="ircinp"></div></div>
@@ -169,6 +174,19 @@ tick();setInterval(tick,1000);
 $("yrs").textContent=new Date().getFullYear()-1995;
 var vis=69+Math.floor(Math.random()*5);$("v").textContent=("000000"+vis).slice(-6);
 function dlg(t,i,m){$("dt").textContent=t;var d=$("di");d.className="ic "+i;if(i==="s"){d.innerHTML='<svg viewBox="0 0 64 64" width="64" height="64" shape-rendering="crispEdges"><rect x="29" y="2" width="6" height="5" fill="#ffe14a"/><rect x="8" y="10" width="7" height="3" fill="#ffe14a"/><rect x="49" y="10" width="7" height="3" fill="#ffe14a"/><rect x="2" y="24" width="8" height="3" fill="#ffe14a"/><rect x="54" y="24" width="8" height="3" fill="#ffe14a"/><rect x="26" y="10" width="12" height="4" fill="#e01818"/><rect x="20" y="14" width="12" height="6" fill="#e01818"/><rect x="32" y="14" width="12" height="6" fill="#1a40d8"/><rect x="16" y="20" width="16" height="26" fill="#e01818"/><rect x="32" y="20" width="16" height="26" fill="#1a40d8"/><rect x="19" y="23" width="3" height="14" fill="#ff9a9a"/><rect x="35" y="23" width="3" height="14" fill="#8fb0ff"/><rect x="31" y="12" width="2" height="34" fill="#fff" opacity=".35"/><rect x="12" y="46" width="40" height="7" fill="#3a3a3a"/><rect x="8" y="53" width="48" height="7" fill="#1e1e1e"/><rect x="12" y="48" width="40" height="2" fill="#6a6a6a"/></svg>'}else if(i==="w"){d.innerHTML='<svg viewBox="0 0 64 64" width="64" height="64" shape-rendering="crispEdges"><rect x="10" y="4" width="16" height="7" fill="#ffd400"/><rect x="8" y="10" width="20" height="3" fill="#e0b000"/><rect x="11" y="13" width="14" height="12" fill="#f2b97a"/><rect x="13" y="17" width="4" height="3" fill="#fff"/><rect x="19" y="17" width="4" height="3" fill="#fff"/><rect x="15" y="18" width="2" height="2" fill="#000"/><rect x="21" y="18" width="2" height="2" fill="#000"/><rect x="13" y="16" width="4" height="2" fill="#c8895a"/><rect x="19" y="16" width="4" height="2" fill="#c8895a"/><rect x="14" y="22" width="8" height="1" fill="#7a3a1a"/><rect x="9" y="25" width="18" height="18" fill="#ff8a00"/><rect x="9" y="30" width="18" height="2" fill="#ffe6a0"/><rect x="27" y="28" width="12" height="4" fill="#f2b97a"/><rect x="9" y="28" width="4" height="12" fill="#f2b97a"/><rect x="10" y="43" width="7" height="14" fill="#2a4a8a"/><rect x="19" y="43" width="7" height="14" fill="#2a4a8a"/><rect x="8" y="57" width="10" height="4" fill="#5a3a1a"/><rect x="18" y="57" width="10" height="4" fill="#5a3a1a"/><rect x="46" y="30" width="3" height="30" fill="#7a4a1e"/><circle cx="47" cy="22" r="11" fill="#d01010" stroke="#700" stroke-width="1.5" shape-rendering="auto"/><path d="M42 17L52 27M52 17L42 27" stroke="#fff" stroke-width="3.5" shape-rendering="auto"/><rect x="37" y="28" width="8" height="4" fill="#f2b97a"/></svg>'}else d.textContent={e:"X",i:"i",q:"!"}[i];$("dm").textContent=m;$("dlg").style.display="block"}
+var cmdBusy=false,cmdAud=null,cmdTm=[];
+function errWav(){var sr=22050,n=Math.floor(sr*.6),buf=new ArrayBuffer(44+n*2),v=new DataView(buf);function w(o,t){for(var i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))}w(0,"RIFF");v.setUint32(4,36+n*2,true);w(8,"WAVE");w(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,"data");v.setUint32(40,n*2,true);for(var i=0;i<n;i++){var t=i/sr,f=t<.18?659:(t<.36?440:330),env=Math.max(0,1-(t%.18)/.3)*(t>.5?Math.max(0,(.6-t)*10):1),x=Math.sin(2*Math.PI*f*t)>0?1:-1;v.setInt16(44+i*2,x*env*9000*.6,true)}var b="",u=new Uint8Array(buf);for(var j=0;j<u.length;j++)b+=String.fromCharCode(u[j]);return "data:audio/wav;base64,"+btoa(b)}
+function cmdEnd(){cmdBusy=false;cmdTm.forEach(clearTimeout);cmdTm=[]}
+function cmdOpen(){var m=$("menu");m.style.display="none";if(cmdBusy)return;cmdBusy=true;try{if(!cmdAud){cmdAud=new Audio(errWav());cmdAud.preload="auto"}cmdAud.muted=true;var q=cmdAud.play();if(q&&q.then)q.then(function(){cmdAud.pause();cmdAud.currentTime=0;cmdAud.muted=false}).catch(function(){cmdAud.muted=false});else{cmdAud.pause();cmdAud.muted=false}}catch(e){}
+ var c=$("cmd"),con=$("con"),P="C:\\WINDOWS>",CMD="net send * This Job Sucks!!!",cur='<span class="cur"></span>';c.style.display="block";
+ con.innerHTML="Microsoft(R) Windows 98\n   (C)Copyright Microsoft Corp 1981-1998.\n\n"+P+cur;var base="Microsoft(R) Windows 98\n   (C)Copyright Microsoft Corp 1981-1998.\n\n"+P;var i=0;
+ function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+ function typ(){if(c.style.display==="none"){cmdEnd();return}i++;con.innerHTML=esc(base+CMD.slice(0,i))+cur;con.scrollTop=con.scrollHeight;if(i<CMD.length)cmdTm.push(setTimeout(typ,75+Math.random()*60));else cmdTm.push(setTimeout(send,600))}
+ function send(){if(c.style.display==="none"){cmdEnd();return}con.innerHTML=esc(base+CMD)+"\n\nThe message was successfully sent to *.\n\n"+esc(P)+cur;con.scrollTop=con.scrollHeight;cmdTm.push(setTimeout(pop,700))}
+ function pop(){cmdEnd();$("mod").style.display="block";dlg("Messenger Service","e","This Job Sucks!!!");$("dlg").classList.add("mdl");try{cmdAud.currentTime=0;var p=cmdAud.play();if(p&&p.catch)p.catch(function(){})}catch(e){}var ok=document.querySelector("#dlg .ok");if(ok)ok.focus()}
+ cmdTm.push(setTimeout(typ,700))}
+function cmdClose(){$("cmd").style.display="none";cmdEnd()}
+window.addEventListener("keydown",function(e){if($("mod").style.display!=="block")return;var d=$("dlg");if(d.contains(e.target)&&(e.key==="Enter"||e.key===" "||e.key==="Tab"))return;if(e.key==="Escape"){return}e.preventDefault();e.stopPropagation()},true);
 function anim(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
 var fighting=false,lastFight=0,pDog=-1e9,pCat=-1e9,pNs=-1e9,pIe=-1e9,fTm=[];
 function ico(id,on){var e=document.querySelector("[data-act="+id+"]");if(e)e.style.visibility=on?"":"hidden"}
@@ -271,6 +289,8 @@ var acts={
  msn:function(){msnOpen()},
  msnclose:function(){msnClear();$("msnw").style.display="none"},
  napster:function(e){anim(e,"shake");dlg("Napster","s","Oh no! Why'd you click this. Now your ISP's gonna send angry-lawyer letters.")},
+ cmd:function(){cmdOpen()},
+ cmdclose:function(){cmdClose()},
  start:function(){ytInit();var m=$("menu");m.style.display=m.style.display==="block"?"none":"block"},
  shutdown:function(){$("menu").style.display="none";shutSound();offWait()},
  bsod:function(){$("menu").style.display="none";var o=$("off");o.style.background="#0000aa";o.style.color="#fff";off("<div>A problem has been detected.<br>Just kidding. Tap to go back.</div>")},
@@ -283,7 +303,7 @@ var acts={
  wastop:function(){try{wa.stopVideo()}catch(e){}},
 
  skipoff:function(){offNow()},
- dlgclose:function(){$("dlg").style.display="none"}
+ dlgclose:function(){$("dlg").style.display="none";$("dlg").classList.remove("mdl");$("mod").style.display="none"}
 };
 document.addEventListener("click",function(ev){
  var t=ev.target.closest("[data-act]");
